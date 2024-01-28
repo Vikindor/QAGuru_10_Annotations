@@ -1,0 +1,25 @@
+plugins {
+    id("java")
+}
+
+group = "qaguru.vikindor"
+version = "1.0"
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.10.1",
+            "com.codeborne:selenide:7.0.6"
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
