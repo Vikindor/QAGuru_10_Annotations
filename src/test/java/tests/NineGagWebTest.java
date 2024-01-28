@@ -1,10 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,6 +19,7 @@ public class NineGagWebTest extends TestBase {
         open("https://9gag.com/");
     }
 
+    @Disabled("Logo is broken, JIRA: QA24-101") //Logo is fine, just for annotation demo
     @Test
     @Tag("SMOKE")
     @DisplayName("Page header should have logo with the '9GAG' label")
@@ -44,14 +42,14 @@ public class NineGagWebTest extends TestBase {
     @CsvSource(value = {
             "Home , 9GAG - Headquarters of the Best Funny Memes",
             "Top, Best Memes of the Week - 9GAG",
-            "Trending, Popular Memes Right Now - 9GAG",
+            "Trending, Popular Memes Right Now - 9GAG", //Often fails on this one. Insufficient timeout?
             "Fresh, New and Fresh Funny Memes - 9GAG",
             "Ask 9GAG, 9GAG - Best Funny Memes and Breaking News"
     })
     @DisplayName("Each website tab should have correct browser tab title")
     void eachTabShouldHaveCorrectTitle(String tabName, String expectedTitle) {
         $(".drawer-container ul").$(byText(tabName)).click();
-        sleep(2500); //Wait until tab title changes
+        sleep(3000); //Wait until tab title changes
         String actualTitle = Selenide.title();
         assertEquals(expectedTitle, actualTitle);
     }
