@@ -42,7 +42,7 @@ public class NineGagWebTest extends TestBase {
     @CsvSource(value = {
             "Home , 9GAG - Headquarters of the Best Funny Memes",
             "Top, Best Memes of the Week - 9GAG",
-            "Trending, Popular Memes Right Now - 9GAG", //Often fails on this one. Insufficient timeout?
+            "Trending, Popular Memes Right Now - 9GAG", //Sometimes fails on this one. Insufficient timeout?
             "Fresh, New and Fresh Funny Memes - 9GAG",
             "Ask 9GAG, 9GAG - Best Funny Memes and Breaking News"
     })
@@ -50,8 +50,7 @@ public class NineGagWebTest extends TestBase {
     void eachTabShouldHaveCorrectTitle(String tabName, String expectedTitle) {
         $(".drawer-container ul").$(byText(tabName)).click();
         sleep(3000); //Wait until tab title changes
-        String actualTitle = Selenide.title();
-        assertEquals(expectedTitle, actualTitle);
+        assertEquals(expectedTitle, Selenide.title());
     }
 
 }
