@@ -17,6 +17,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
+@DisplayName("ZooM Web Test")
 public class ZoomWebTest extends TestBase {
 
     @BeforeEach
